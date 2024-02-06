@@ -70,11 +70,14 @@ archivo_seleccionado = st.selectbox("Selecciona un archivo PDF", doc_pdf)
 
 # Visualiza el archivo PDF seleccionado
 if archivo_seleccionado and st.button("Visualizar PDF"):
-    ruta_pdf = archivos_pdf[archivo_seleccionado]
-    try:
-        visualizar_pdf(ruta_pdf)
-    except Exception as e:
+    ruta_pdf = archivos_pdf.get(archivo_seleccionado)
+    if ruta_pdf:
+        try:
+            visualizar_pdf(ruta_pdf)
+        except Exception as e:
             st.error(f"Error al procesar el PDF: {e}")
+    else:
+        st.warning("Archivo PDF no encontrado.")
 
 
 # Texto sobre las grafías utilizadas en la escritura
