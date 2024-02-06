@@ -68,7 +68,7 @@ def visualizar_pdf(ruta_pdf):
     
 # Mapeo de nombres de archivos a rutas (misma carpeta)
 doc_pdf = ["Sigüenza_y_Góngora", "VT_(Freiburg)"]
-carpeta_pdf = current_directory + "/workspaces/Transkribus/"
+carpeta_pdf = "/workspaces/Transkribus/"
 
 archivos_pdf = {nombre: f"{carpeta_pdf}{nombre}.pdf" for nombre in doc_pdf}
 
@@ -81,6 +81,8 @@ if archivo_seleccionado and st.button("Visualizar PDF"):
     if ruta_pdf:
         try:
             visualizar_pdf(ruta_pdf)
+        except FileNotFoundError:
+            st.error(f"Error: El archivo PDF no se encuentra en la ruta especificada: {ruta_pdf}")
         except Exception as e:
             st.error(f"Error al procesar el PDF: {e}")
     else:
