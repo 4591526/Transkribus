@@ -67,8 +67,8 @@ def visualizar_pdf(ruta_pdf):
     pdf_doc.close()
     
 # Mapeo de nombres de archivos a rutas (misma carpeta)
-doc_pdf = ["Sigüenza_y_Góngora", "VT_(Freiburg)"]
-carpeta_pdf = "/workspaces/Transkribus/"
+doc_pdf = ["SG", "VT"]
+carpeta_pdf = "/workspaces/Transkribus/documentos/"
 
 archivos_pdf = {nombre: f"{carpeta_pdf}{nombre}.pdf" for nombre in doc_pdf}
 
