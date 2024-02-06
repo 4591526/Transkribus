@@ -1,12 +1,11 @@
 import streamlit as st
-import fitz  # PyMuPDF
 from PIL import Image
 from io import BytesIO
 
 # Importaciones adicionales
 import pandas as pd
 import csv
-from pdfminer.high_level import extract_text
+import fitz  # PyMuPDF
 
 # Con formato de Markdown centramos y agrandamos la letra del título de la web en streamlit
 st.markdown("<h1 style='text-align: center; color: dark blue;'>Paratextos del siglo XVII</h1>", unsafe_allow_html=True)
@@ -62,7 +61,7 @@ def visualizar_pdf(ruta_pdf):
     
 # Mapeo de nombres de archivos a rutas (misma carpeta)
 doc_pdf = ["Sigüenza_y_Góngora", "VT_(Freiburg)"]
-carpeta_pdf = "C://Users//Luisa//Desktop//Transkribus//"
+carpeta_pdf = "/workspaces/Transkribus/"
 
 archivos_pdf = {nombre: f"{carpeta_pdf}{nombre}.pdf" for nombre in doc_pdf}
 
