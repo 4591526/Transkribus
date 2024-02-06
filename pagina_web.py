@@ -1,9 +1,12 @@
-import streamlit as st  #Importamos Streamlit: esta biblioteca de Python facilita la creación y visualización de páginas web interactivas 
-import pandas as pd  #Importamos Pandas: esta biblioteca sirve para el análisis de datos tabulados en Python
-import csv  #Este comando sirve para leer y escribir archivos CSV 
-import os #Esta biblioteca proporciona una interfaz para interactuar con el sistema operativo (manipulación de rutas, la creación y eliminación de directorios, y la obtención de información sobre archivos)
-from PIL import Image #Es una clase dentro de la biblioteca Pillow que proporciona funcionalidades para trabajar con imágenes
-import fitz
+import streamlit as st
+import fitz  # PyMuPDF
+from PIL import Image
+from io import BytesIO
+
+# Importaciones adicionales
+import pandas as pd
+import csv
+from pdfminer.high_level import extract_text
 
 # Con formato de Markdown centramos y agrandamos la letra del título de la web en streamlit
 st.markdown("<h1 style='text-align: center; color: dark blue;'>Paratextos del siglo XVII</h1>", unsafe_allow_html=True)
@@ -34,41 +37,46 @@ estilo_personalizado = f"""
 # Mostramos el texto con la tipografía personalizada
 st.markdown(estilo_personalizado, unsafe_allow_html=True)
 
-# Función para leer archivos PDF
-def read_pdf(file_path):
+def visualizar_pdf(ruta_pdf):
+    pdf_doc = fitz.open(ruta_pdf)
+    
+    # Muestra todas las páginas en un bucle
+    for numero_pagina in range(pdf_doc.page_count):
+        pagina_actual = pdf_doc[numero_pagina]
+
+        # Obtiene la imagen como un objeto Pixmap
+        pixmap = pagina_actual.get_pixmap()
+
+        # Convierte el objeto Pixmap a un formato compatible con PIL (Pillow)
+        img = Image.frombytes("RGB", [pixmap.width, pixmap.height], pixmap.samples)
+
+        # Convierte la imagen de PIL a bytes
+        img_bytes = BytesIO()
+        img.save(img_bytes, format="PNG")
+        img_data = img_bytes.getvalue()
+
+        # Muestra la imagen en Streamlit
+        st.image(img_data, caption=f"Página {numero_pagina + 1}/{pdf_doc.page_count}", use_column_width=True)
+
+    pdf_doc.close()
+    
+# Mapeo de nombres de archivos a rutas (misma carpeta)
+doc_pdf = ["Sigüenza_y_Góngora", "VT_(Freiburg)"]
+carpeta_pdf = "C://Users//Luisa//Desktop//Transkribus//"
+
+archivos_pdf = {nombre: f"{carpeta_pdf}{nombre}.pdf" for nombre in doc_pdf}
+
+# Lista desplegable para seleccionar un archivo PDF
+archivo_seleccionado = st.selectbox("Selecciona un archivo PDF", doc_pdf)
+
+# Visualiza el archivo PDF seleccionado
+if archivo_seleccionado and st.button("Visualizar PDF"):
+    ruta_pdf = archivos_pdf[archivo_seleccionado]
     try:
-        doc = fitz.open(file_path)
-        text = ""
-        for page_num in range(doc.page_count):
-            page = doc[page_num]
-            text += page.get_text()
-        doc.close()
-        return text
+        visualizar_pdf(ruta_pdf)
     except Exception as e:
-        st.error(f"Error al leer el archivo PDF: {e}")
-        return ""
+            st.error(f"Error al procesar el PDF: {e}")
 
-# Ruta al directorio de documentos PDF
-pdf_directory = "C://Users//Luisa//Desktop//Transkribus"
-
-# Obtener la lista de archivos PDF en el directorio
-pdf_files = [f for f in os.listdir(pdf_directory) if f.endswith(".pdf")]
-
-# Selección del archivo PDF
-selected_pdf = st.selectbox("Selecciona un archivo PDF", pdf_files)
-
-# Ruta completa del archivo PDF seleccionado
-pdf_path = os.path.join(pdf_directory, selected_pdf)
-
-# Mostrar el nombre del archivo seleccionado
-st.write(f"Archivo PDF seleccionado: {selected_pdf}")
-
-# Leer el contenido del archivo PDF
-pdf_text = read_pdf(pdf_path)
-
-# Mostrar el contenido en Streamlit
-st.subheader("Contenido del PDF:")
-st.text(pdf_text)
 
 # Texto sobre las grafías utilizadas en la escritura
 st.markdown("## *Comentarios reales* del Inca Garcilaso de la Vega:")
