@@ -65,6 +65,8 @@ carpeta_pdf = "/workspaces/Transkribus/"
 
 archivos_pdf = {nombre: f"{carpeta_pdf}{nombre}.pdf" for nombre in doc_pdf}
 
+ruta_completa = os.path.join(carpeta_pdf, ruta_pdf)
+
 # Lista desplegable para seleccionar un archivo PDF
 archivo_seleccionado = st.selectbox("Selecciona un archivo PDF", doc_pdf)
 
