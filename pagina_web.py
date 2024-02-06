@@ -49,7 +49,7 @@ def read_pdf(file_path):
         return ""
 
 # Ruta al directorio de documentos PDF
-pdf_directory = "C://Users//u_humanidades//Desktop//Transkribus//documentos"
+pdf_directory = "C://Users//Luisa//Desktop//Transkribus"
 
 # Obtener la lista de archivos PDF en el directorio
 pdf_files = [f for f in os.listdir(pdf_directory) if f.endswith(".pdf")]
