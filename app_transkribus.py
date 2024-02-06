@@ -68,7 +68,7 @@ def visualizar_pdf(ruta_pdf):
     
 # Mapeo de nombres de archivos a rutas (misma carpeta)
 doc_pdf = ["SG", "VT"]
-carpeta_pdf = "/Transkribus/documentos/"
+carpeta_pdf = "/documentos/"
 
 archivos_pdf = {nombre: f"{carpeta_pdf}{nombre}.pdf" for nombre in doc_pdf}
 
