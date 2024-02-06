@@ -2,6 +2,10 @@ import streamlit as st
 from PIL import Image
 from io import BytesIO
 import fitz  # PyMuPDF
+import os
+
+# Cambiar al directorio del script
+os.chdir(os.path.dirname(__file__))
 
 # Importaciones adicionales
 import pandas as pd
