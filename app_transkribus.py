@@ -4,8 +4,11 @@ from io import BytesIO
 import fitz  # PyMuPDF
 import os
 
+# Obtener la ruta del directorio actual del script
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
 # Cambiar al directorio del script
-os.chdir(os.path.dirname(__file__))
+os.chdir(current_directory)
 
 # Importaciones adicionales
 import pandas as pd
@@ -65,10 +68,9 @@ def visualizar_pdf(ruta_pdf):
     
 # Mapeo de nombres de archivos a rutas (misma carpeta)
 doc_pdf = ["Sigüenza_y_Góngora", "VT_(Freiburg)"]
-carpeta_pdf = "/workspaces/Transkribus/"
+carpeta_pdf = current_directory + "/workspaces/Transkribus/"
 
 archivos_pdf = {nombre: f"{carpeta_pdf}{nombre}.pdf" for nombre in doc_pdf}
-
 
 # Lista desplegable para seleccionar un archivo PDF
 archivo_seleccionado = st.selectbox("Selecciona un archivo PDF", doc_pdf)
