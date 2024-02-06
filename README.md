@@ -1,3 +1,3 @@
 # Transkribus
 Streamlit - Transkribus
-Por: Luisa Gomez, Sabina Oporto y Serggio Juarez
+##Por: Luisa Gomez, Sabina Oporto y Serggio Juarez
