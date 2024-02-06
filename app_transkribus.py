@@ -1,11 +1,11 @@
 import streamlit as st
 from PIL import Image
 from io import BytesIO
+import fitz  # PyMuPDF
 
 # Importaciones adicionales
 import pandas as pd
 import csv
-import fitz  # PyMuPDF
 
 # Con formato de Markdown centramos y agrandamos la letra del título de la web en streamlit
 st.markdown("<h1 style='text-align: center; color: dark blue;'>Paratextos del siglo XVII</h1>", unsafe_allow_html=True)
