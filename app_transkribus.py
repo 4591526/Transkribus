@@ -17,7 +17,7 @@ import csv
 # Con formato de Markdown centramos y agrandamos la letra del título de la web en streamlit
 st.markdown("<h1 style='text-align: center; color: dark blue;'>Paratextos del siglo XVII</h1>", unsafe_allow_html=True)
 
-# Nombramos al archivo de la imagen de Zoila y Team Zoila
+# Nombramos al archivo de imagen
 imagen_inca = "inca.jpg"
 imagen_calderon = "calderon.jpg"
 imagen_siguenza = "siguenza.jpg"
@@ -67,7 +67,7 @@ def visualizar_pdf(ruta_pdf):
     pdf_doc.close()
     
 # Mapeo de nombres de archivos a rutas (misma carpeta)
-doc_pdf = ["SG", "VT"]
+doc_pdf = ["SG", "VT", "IG"]
 carpeta_pdf = "documentos/"
 
 archivos_pdf = {nombre: f"{carpeta_pdf}{nombre}.pdf" for nombre in doc_pdf}
