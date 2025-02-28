@@ -62,7 +62,7 @@ def visualizar_pdf(ruta_pdf):
         img_data = img_bytes.getvalue()
 
         # Muestra la imagen en Streamlit
-        st.image(img_data, caption=f"Página {numero_pagina + 1}/{pdf_doc.page_count}", use_column_width=True)
+        st.image(img_data, caption=f"Página {numero_pagina + 1}/{pdf_doc.page_count}", use_container_width=True)
 
     pdf_doc.close()
     
@@ -96,7 +96,7 @@ st.write("- No hay intercambio entre las grafías “u” y “v”, ambas respo
 st.write("- Utiliza la grafía “s” (la letra actualmente utilizada) cuando aparece el sonido [s] al final de la palabra; cuando el mismo sonido aparece al inicio o en el medio de la palabra, tiende a utilizar la otra grafía de la “s” (la “s” larga). No obstante, hay un caso que llama la atención y es cuando escribe islas, pues lo escribe tal cual, con las dos letras “s” regulares.")
 
 # Mostramos la imagen 
-st.image(imagen_inca, caption="Portada de Comentarios reales", use_column_width=True)
+st.image(imagen_inca, caption="Portada de Comentarios reales", use_container_width=True)
 
 # Texto sobre las grafías utilizadas en la escritura
 st.markdown("## *La aurora en Copacabana* de Calderón de la Barca:")
@@ -106,7 +106,7 @@ st.write("- Las palabras valentía y veneraciones también están bien escritas.
 st.write("- “Dissipar” la primera s era la larga, mientras que la segunda era la regular. Sin embargo, en “passos” y “assombro” las “s” estaban ambas representadas con el símbolo largo.")
 
 # Mostramos la imagen 
-st.image(imagen_calderon, caption="Portada de La aurora en Copacabana", use_column_width=True)
+st.image(imagen_calderon, caption="Portada de La aurora en Copacabana", use_container_width=True)
 
 # Texto sobre las grafías utilizadas en la escritura
 st.markdown("## *El teatro de virtudes políticas* de Sigüenza y Góngora:")
@@ -117,4 +117,4 @@ st.write("- Cada vez que el sonido labial aparece antes de una consonante, se ut
 st.write("- La “v” parece que se presenta antes de vocal. Sin embargo, escribe también *Nobilissima, debiles y beneficio*, además del apellido *Ribera* del propio marqués.")
 
 # Mostramos la imagen
-st.image(imagen_siguenza, caption="Portada de El teatro de virtudes políticas", use_column_width=True)
+st.image(imagen_siguenza, caption="Portada de El teatro de virtudes políticas", use_container_width=True)
